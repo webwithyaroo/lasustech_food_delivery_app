@@ -126,7 +126,7 @@ export default function RestaurantsPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-tr from-black to-orange-600 text-white py-20">
         <Image
-          src="https://media.gettyimages.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=0&k=20&c=SEyObHsbBsrd1XZlgEg389VT86BMFKZKfKReKyVPAk4="
+          src="https://media.gettyimages.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=0&k=20&c=SEyObHsbBsrd1XZlgE g389VT86BMFKZKfKReKyVPAk4="
           alt="Food Banner"
           layout="fill"
           objectFit="cover"
