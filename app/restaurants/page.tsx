@@ -206,7 +206,7 @@ export default function RestaurantsPage() {
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="font-semibold text-lg">{restaurant.name}</h3>
-                    <span className="text-sm font-medium text-gray-600">
+                    <span className="text-xl font-medium text-gray-600">
                       {restaurant.priceRange}
                     </span>
                   </div>

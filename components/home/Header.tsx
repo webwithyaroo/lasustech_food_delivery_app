@@ -90,12 +90,12 @@ const NavigationBar = () => {
 
             <a
               href="/signin"
-              className="text-lg hover:text-primary dark:hover:text-primary-light transition-colors">
+              className="text-lg hover:text-primary dark:hover:text-white/30 transition-colors">
               Sign In
             </a>
             <Button
               size={"lg"}
-              className="bg-dark text-white hover:bg-primary/90 dark:bg-secondary-foreground dark:text-dark">
+              className="bg-dark text-white hover:bg-primary/90 dark:bg-secondary-foreground hover:text-white/30 dark:text-dark">
               Start Ordering Now
             </Button>
           </div>
@@ -169,7 +169,7 @@ const NavigationBar = () => {
               className="text-base text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors">
               Sign In
             </a>
-            <Button className=" dark:bg-primary text-white dark:text-black w-full">
+            <Button className=" dark:bg-primary dark:text-white text-black w-full">
               Start Ordering Now
             </Button>
           </div>
