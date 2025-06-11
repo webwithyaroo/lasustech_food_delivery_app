@@ -55,3 +55,43 @@ export const foodItems = [
     description: "A tropical blend of fruits and granola in a vibrant bowl.",
   },
 ];
+
+const restaurants = [
+  {
+    id: 1,
+    name: "FreshDay Kitchen",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+    // ...
+  },
+  {
+    id: 2,
+    name: "Burger Palace",
+    image:
+      "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 3,
+    name: "Pasta Corner",
+    image:
+      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 4,
+    name: "Sushi Express",
+    image:
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 5,
+    name: "Taco Fiesta",
+    image:
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 6,
+    name: "Mediterranean Delight",
+    image:
+      "https://images.unsplash.com/photo-1613145993481-5e8b2bc934e0?auto=format&fit=crop&w=800&q=80",
+  },
+];

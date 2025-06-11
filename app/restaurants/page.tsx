@@ -123,18 +123,24 @@ export default function RestaurantsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-16">
-        <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-tr from-black to-orange-600 text-white py-20">
+        <Image
+          src="https://media.gettyimages.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=0&k=20&c=SEyObHsbBsrd1XZlgEg389VT86BMFKZKfKReKyVPAk4="
+          alt="Food Banner"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0 "
+        />
+        <div className="relative container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Discover Amazing Restaurants
             </h1>
             <p className="text-xl mb-8 opacity-90">
               From local favorites to trending hotspots, find the perfect meal
-              for any craving
+              for any craving.
             </p>
-
-            {/* Search Bar */}
             <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
