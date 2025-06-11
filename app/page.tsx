@@ -7,12 +7,11 @@ import FoodPopular from "@/components/home/PopularSection";
 const Page = () => {
   return (
     <>
-      <NavigationBar />
+      
       <HeroSection />
       <FoodPopular />
       <AboutSection />
-      {/* <Footer /> */}
-      <FooterSection />
+      
     </>
   );
 };
