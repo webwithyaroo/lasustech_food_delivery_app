@@ -67,111 +67,122 @@ const openings = [
 
 export default function CareersPage() {
   return (
-    <div className="container mx-auto px-4 py-8 mt-20">
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-semibold mb-6 font-inter">
-          Join Our Team
-        </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          Help us revolutionize the food delivery industry while working with a
-          team of passionate individuals.
-        </p>
-        <Button className="bg-accent text-white hover:bg-accent/90">
-          View All Positions
-        </Button>
-      </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+      <div className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            Join Our Team
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+            Help us revolutionize the food delivery industry while working with a
+            team of passionate individuals.
+          </p>
+          <Button className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
+            View All Positions
+          </Button>
+        </div>
 
-      {/* Culture Section */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-semibold mb-8 text-center">
-          Life at Ordery
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-4">
-            <p className="text-gray-600">
-              At Ordery, we believe in creating an environment where everyone
-              can thrive. Our culture is built on innovation, collaboration, and
-              a shared passion for delivering exceptional experiences.
-            </p>
-            <p className="text-gray-600">
-              We value diversity, encourage creativity, and support personal and
-              professional growth. Join us in shaping the future of food
-              delivery!
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
-              alt="Team collaboration"
-              className="rounded-lg w-full h-48 object-cover"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
-              alt="Office culture"
-              className="rounded-lg w-full h-48 object-cover"
-            />
+        {/* Culture Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            Life at Ordery
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <p className="text-gray-600 dark:text-gray-300">
+                At Ordery, we believe in creating an environment where everyone
+                can thrive. Our culture is built on innovation, collaboration, and
+                a shared passion for delivering exceptional experiences.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                We value diversity, encourage creativity, and support personal and
+                professional growth. Join us in shaping the future of food
+                delivery!
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+                alt="Team collaboration"
+                className="rounded-lg w-full h-48 object-cover"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
+                alt="Office culture"
+                className="rounded-lg w-full h-48 object-cover"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Benefits Section */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-semibold mb-8 text-center">Benefits</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((benefit) => (
-            <Card key={benefit.title}>
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Benefits Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            Benefits
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit) => (
+              <Card key={benefit.title} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-4">{benefit.icon}</div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Open Positions */}
-      <div>
-        <h2 className="text-3xl font-semibold mb-8 text-center">
-          Open Positions
-        </h2>
-        <div className="space-y-6">
-          {openings.map((job) => (
-            <Card key={job.title} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{job.title}</h3>
-                    <p className="text-gray-600 mb-4">{job.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge
-                        variant="secondary"
-                        className="flex items-center gap-1">
-                        <Briefcase className="h-4 w-4" />
-                        {job.department}
-                      </Badge>
-                      <Badge
-                        variant="secondary"
-                        className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        {job.location}
-                      </Badge>
-                      <Badge
-                        variant="secondary"
-                        className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {job.type}
-                      </Badge>
+        {/* Open Positions */}
+        <div>
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            Open Positions
+          </h2>
+          <div className="space-y-6">
+            {openings.map((job) => (
+              <Card 
+                key={job.title} 
+                className="hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+              >
+                <CardContent className="p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                        {job.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">{job.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1 bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent">
+                          <Briefcase className="h-4 w-4" />
+                          {job.department}
+                        </Badge>
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1 bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent">
+                          <MapPin className="h-4 w-4" />
+                          {job.location}
+                        </Badge>
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1 bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent">
+                          <Clock className="h-4 w-4" />
+                          {job.type}
+                        </Badge>
+                      </div>
                     </div>
+                    <Button className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
+                      Apply Now
+                    </Button>
                   </div>
-                  <Button className="bg-accent text-white hover:bg-accent/90">
-                    Apply Now
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>

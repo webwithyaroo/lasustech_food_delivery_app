@@ -3,13 +3,17 @@
 import { navbarLinks } from "@/components/constants";
 import { Button } from "../ui/button";
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ShoppingCart } from "lucide-react";
 import { usePathname } from 'next/navigation';
+import { useCart } from "@/hooks/use-carts";
 
 const NavigationBar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const { items } = useCart();
+
+  const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   // On mount, check saved preference or system preference
   useEffect(() => {
@@ -42,7 +46,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 dark:bg-black  bg-white ">
+    <header className="fixed top-0 left-0 w-full z-50 dark:bg-black bg-white shadow-sm">
       <nav className="container px-4 mx-auto relative">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -58,30 +62,39 @@ const NavigationBar = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`text-lg transition-colors duration-300  ${
-                    pathname === link.href
-                      ? "text-accent font-semibold"
-                      : "text-gray-600  hover:text-accent dark:text-white"
-                  }`}>
+                  className={`text-lg transition-colors duration-300 ${pathname === link.href
+                    ? "text-primary font-semibold dark:text-accent"
+                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent"
+                    }`}>
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
 
-          {/* Right Side (Buttons + Dark Mode Toggle) Desktop */}
+          {/* Right Side (Cart + Buttons + Dark Mode Toggle) Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
+            {/* Cart Icon with Counter */}
+            <a href="/cart" className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+              <ShoppingCart className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </a>
+
             {/* Dark Mode Toggle */}
             <button
               aria-label="Toggle Dark Mode"
               onClick={toggleDarkMode}
-              className="relative w-24 h-12 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full cursor-pointer transition-colors duration-300 hover:bg-gray-400 dark:hover:bg-gray-600 focus:outline-none border-2 ">
+              className="relative w-24 h-12 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full cursor-pointer transition-colors duration-300 hover:bg-gray-400 dark:hover:bg-gray-600 focus:outline-none border-2">
               <div
                 className={`w-12 h-12 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
                   darkMode ? "translate-x-12" : "-translate-x-1 bg-black"
                 }`}
               />
-              <span className="absolute left-2  text-yellow-400 dark:text-gray-900 pointer-events-none ">
+              <span className="absolute left-2 text-yellow-400 dark:text-gray-900 pointer-events-none">
                 <Sun size={22} />
               </span>
               <span className="absolute right-2 text-gray-700 dark:text-yellow-300 pointer-events-none">
@@ -91,90 +104,72 @@ const NavigationBar = () => {
 
             <a
               href="/signin"
-              className="text-lg hover:text-primary dark:hover:text-white/30 transition-colors">
+              className="text-lg text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition-colors">
               Sign In
             </a>
             <Button
               size={"lg"}
-              className="bg-dark text-white hover:bg-primary/90 dark:bg-secondary-foreground hover:text-white/30 dark:text-dark">
+              className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
               Start Ordering Now
             </Button>
           </div>
 
-          {/* Mobile Toggle Button */}
-          <div className="flex items-center space-x-2 lg:hidden">
-            {/* Dark Mode Toggle Mobile */}
-            <button
-              aria-label="Toggle Dark Mode"
-              onClick={toggleDarkMode}
-              className="relative w-14 h-8 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full p-[2px] cursor-pointer transition-colors duration-300 hover:bg-gray-400 dark:hover:bg-gray-600 border-2 outline-none focus-within:outline-none ">
-              <div
-                className={`w-7 h-7 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
-                  darkMode ? "translate-x-6" : "-translate-x-1 bg-black"
-                }`}
-              />
-              <span className="absolute left-[3px] text-yellow-400 dark:text-gray-900 pointer-events-none">
-                <Sun size={15} />
-              </span>
-              <span className="absolute right-[3px] text-gray-700 dark:text-yellow-300 pointer-events-none">
-                <Moon size={15} />
-              </span>
-            </button>
-
-            {/* Hamburger Button */}
-            <button
-              className="text-gray-700 dark:text-gray-300 focus:outline-none z-[51]"
-              onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={28} /> : <Menu size={30} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="lg:hidden text-gray-600 dark:text-white hover:text-primary dark:hover:text-accent transition-colors">
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* 🔲 Blur Background Overlay */}
+        {/* Mobile Menu */}
         {menuOpen && (
-          <div
-            onClick={() => setMenuOpen(false)}
-            className="fixed inset-0 z-[45] bg-black/30 backdrop-blur-sm lg:hidden transition-opacity duration-300"
-          />
-        )}
-
-        {/* Slide-down Mobile Menu */}
-        <div
-          className={`lg:hidden bg-white dark:bg-dark fixed top-0 left-0 w-full  z-[50] shadow-md transform transition-transform duration-300 ease-out pt-10 ${
-            menuOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-[200%] opacity-0 pointer-events-none"
-          }`}>
-          <div className="flex flex-col gap-4 py-4 px-6">
-            {navbarLinks.map((link, i) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => {
-                  setMenuOpen(false);
-                  setMenuOpen(false);
-                }}
-                className={`text-base  block transition-colors duration-300 ${
-                  pathname === link.href
-                    ? "text-accent font-semibold"
-                    : "text-black dark:text-white"
-                }`}>
-                {link.label}
-              </a>
-            ))}
-
-            <hr className="border-gray-300 dark:border-gray-700" />
-
-            <a
-              href="/signin"
-              className="text-base text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors">
-              Sign In
-            </a>
-            <Button className=" dark:bg-primary dark:text-white text-black w-full">
-              Start Ordering Now
-            </Button>
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-black shadow-lg py-4">
+            <ul className="space-y-4">
+              {navbarLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`block px-4 py-2 text-lg transition-colors duration-300 ${
+                      pathname === link.href
+                        ? "text-primary font-semibold dark:text-accent"
+                        : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent"
+                    }`}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              {/* Mobile Cart Link */}
+              <li>
+                <a
+                  href="/cart"
+                  className="flex items-center px-4 py-2 text-lg text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition-colors">
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Cart
+                  {cartItemCount > 0 && (
+                    <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/signin"
+                  className="block px-4 py-2 text-lg text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition-colors">
+                  Sign In
+                </a>
+              </li>
+              <li className="px-4">
+                <Button
+                  size={"lg"}
+                  className="w-full bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
+                  Start Ordering Now
+                </Button>
+              </li>
+            </ul>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   );

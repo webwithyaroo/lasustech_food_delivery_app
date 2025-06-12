@@ -76,140 +76,102 @@ export default function BlogPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-20">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-semibold mb-6 font-inter">Ordery Blog</h1>
-        <p className="text-2xl max-sm:text-base text-gray-600  mx-auto">
-          Discover the latest news, insights, and stories from the world of food
-          delivery.
-        </p>
-      </div>
-
-      {/* Search and Filter */}
-      <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-          <div className="relative w-full md:w-96">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Search articles..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-                className={
-                  selectedCategory == category
-                    ? "bg-accent dark:bg-accent"
-                    : "bg-transparent"
-                }>
-                {category}
-              </Button>
-            ))}
-          </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Ordery Blog</h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Discover the latest news, insights, and stories from the world of food
+            delivery.
+          </p>
         </div>
-      </div>
 
-      {/* Featured Post */}
-      <Card className="mb-12">
-        <CardContent className="p-0">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="relative h-[300px] md:h-auto">
-              <img
-                src={blogPosts[0].image}
-                alt={blogPosts[0].title}
-                className="w-full h-full object-cover"
+        {/* Search and Filter */}
+        <div className="mb-8">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="relative w-full md:w-96">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search articles..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-primary dark:focus:ring-accent"
               />
             </div>
-            <div className="p-6 flex flex-col justify-center">
-              <Badge className="w-fit mb-4">{blogPosts[0].category}</Badge>
-              <h2 className="text-2xl font-semibold mb-4">
-                {blogPosts[0].title}
-              </h2>
-              <p className="text-gray-600 mb-6">{blogPosts[0].excerpt}</p>
-              <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  {blogPosts[0].date}
-                </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  {blogPosts[0].readTime}
-                </div>
-              </div>
-              <Button className="w-fit bg-accent text-white hover:bg-accent/90">
-                Read More <ChevronRight className="h-4 w-4 ml-2" />
-              </Button>
+            <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  onClick={() => setSelectedCategory(category)}
+                  className={selectedCategory === category 
+                    ? "bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90" 
+                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent border-gray-200 dark:border-gray-700"}
+                >
+                  {category}
+                </Button>
+              ))}
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      {/* Blog Posts Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredPosts.slice(1).map((post) => (
-          <Card
-            key={post.id}
-            className="overflow-hidden hover:shadow-lg transition-shadow">
-            <CardContent className="p-0">
+        {/* Blog Posts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredPosts.map((post) => (
+            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
               <div className="relative h-48">
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-full object-cover"
                 />
+                <Badge
+                  className="absolute top-4 right-4 bg-primary/90 text-white dark:bg-accent/90"
+                  variant="secondary"
+                >
+                  {post.category}
+                </Badge>
               </div>
-              <div className="p-6">
-                <Badge className="mb-4">{post.category}</Badge>
-                <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
-                    {post.date}
+              <CardContent className="p-6">
+                <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent transition-colors">
+                  {post.title}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
+                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>{post.date}</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    {post.readTime}
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    <span>{post.readTime}</span>
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  className="text-accent hover:text-accent/90">
-                  Read More <ChevronRight className="h-4 w-4 ml-2" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Newsletter Subscription */}
-      <div className="mt-16 text-center bg-accent/10 rounded-lg p-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          Subscribe to Our Newsletter
-        </h2>
-        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Stay updated with our latest articles, food trends, and exclusive
-          offers.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            className="flex-grow"
-          />
-          <Button className="bg-accent text-white hover:bg-accent/90">
-            Subscribe
-          </Button>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-300">
+                    By {post.author}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    className="text-primary hover:text-primary/90 dark:text-accent dark:hover:text-accent/90 p-0"
+                  >
+                    Read More <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
+
+        {filteredPosts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-600 dark:text-gray-300 text-lg">
+              No blog posts found matching your criteria.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

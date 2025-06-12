@@ -16,7 +16,7 @@ const menuItems = [
     description: "Fresh mozzarella, tomatoes, and basil on a crispy crust",
     rating: 4.8,
     reviews: 128,
-    category: "Pizza"
+    category: "Pizza",
   },
   {
     id: "2",
@@ -26,7 +26,7 @@ const menuItems = [
     description: "Fresh grilled salmon with quinoa and seasonal vegetables",
     rating: 4.6,
     reviews: 95,
-    category: "Healthy"
+    category: "Healthy",
   },
   {
     id: "3",
@@ -36,7 +36,7 @@ const menuItems = [
     description: "Handmade pasta with wild mushrooms and truffle oil",
     rating: 4.7,
     reviews: 156,
-    category: "Pasta"
+    category: "Pasta",
   },
   {
     id: "4",
@@ -46,7 +46,7 @@ const menuItems = [
     description: "Marinated beef, kimchi, and rice with house sauce",
     rating: 4.9,
     reviews: 203,
-    category: "Asian"
+    category: "Asian",
   },
   {
     id: "5",
@@ -56,7 +56,7 @@ const menuItems = [
     description: "Hummus, falafel, tabbouleh, and warm pita bread",
     rating: 4.5,
     reviews: 167,
-    category: "Mediterranean"
+    category: "Mediterranean",
   },
   {
     id: "6",
@@ -66,7 +66,7 @@ const menuItems = [
     description: "Fresh tuna, spicy mayo, avocado, and cucumber",
     rating: 4.6,
     reviews: 142,
-    category: "Sushi"
+    category: "Sushi",
   },
   {
     id: "7",
@@ -76,7 +76,7 @@ const menuItems = [
     description: "Premium wagyu beef with truffle aioli and aged cheddar",
     rating: 4.8,
     reviews: 189,
-    category: "Burgers"
+    category: "Burgers",
   },
   {
     id: "8",
@@ -86,8 +86,8 @@ const menuItems = [
     description: "Organic acai blend topped with fresh fruits and granola",
     rating: 4.7,
     reviews: 134,
-    category: "Healthy"
-  }
+    category: "Healthy",
+  },
 ];
 
 export default function MenuPage() {
@@ -95,13 +95,15 @@ export default function MenuPage() {
   const { toast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categories = Array.from(new Set(menuItems.map(item => item.category)));
+  const categories = Array.from(
+    new Set(menuItems.map((item) => item.category))
+  );
   const filteredItems = selectedCategory
-    ? menuItems.filter(item => item.category === selectedCategory)
+    ? menuItems.filter((item) => item.category === selectedCategory)
     : menuItems;
 
   const getItemQuantity = (itemId: string) => {
-    const cartItem = items.find(item => item.id === itemId);
+    const cartItem = items.find((item) => item.id === itemId);
     return cartItem ? cartItem.quantity : 0;
   };
 
@@ -120,7 +122,7 @@ export default function MenuPage() {
         name: item.name,
         price: item.price,
         image: item.image,
-        quantity: 1
+        quantity: 1,
       });
     } else {
       updateQuantity(item.id, newQuantity);
@@ -140,16 +142,14 @@ export default function MenuPage() {
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
-              onClick={() => setSelectedCategory(null)}
-            >
+              onClick={() => setSelectedCategory(null)}>
               All
             </Button>
-            {categories.map(category => (
+            {categories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-              >
+                onClick={() => setSelectedCategory(category)}>
                 {category}
               </Button>
             ))}
@@ -160,8 +160,7 @@ export default function MenuPage() {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
+              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={item.image}
@@ -182,10 +181,14 @@ export default function MenuPage() {
                     <span className="ml-1 text-sm">{item.rating}</span>
                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{item.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                  {item.description}
+                </p>
                 <div className="flex items-center justify-between">
                   <Badge variant="outline">{item.category}</Badge>
-                  <span className="text-sm text-gray-500">{item.reviews} reviews</span>
+                  <span className="text-sm text-gray-500">
+                    {item.reviews} reviews
+                  </span>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -193,24 +196,23 @@ export default function MenuPage() {
                       variant="outline"
                       size="icon"
                       onClick={() => handleQuantityChange(item, -1)}
-                      disabled={getItemQuantity(item.id) === 0}
-                    >
+                      disabled={getItemQuantity(item.id) === 0}>
                       <Minus className="h-4 w-4" />
                     </Button>
-                    <span className="w-8 text-center">{getItemQuantity(item.id)}</span>
+                    <span className="w-8 text-center">
+                      {getItemQuantity(item.id)}
+                    </span>
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleQuantityChange(item, 1)}
-                    >
+                      onClick={() => handleQuantityChange(item, 1)}>
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
                   <Button
                     variant="default"
                     className="bg-primary text-white hover:bg-primary/90"
-                    onClick={() => handleQuantityChange(item, 1)}
-                  >
+                    onClick={() => handleQuantityChange(item, 1)}>
                     <ShoppingCart className="w-4 h-4 mr-2" />
                     Add
                   </Button>
@@ -220,7 +222,7 @@ export default function MenuPage() {
           ))}
         </div>
       </div>
-      <footer className="bg-white dark:bg-gray-800 shadow-lg mt-auto py-6">
+      <footer className="bg-white dark:bg-gray-800  mt-auto py-6">
         <div className="container mx-auto px-4">
           <p className="text-center text-gray-600 dark:text-gray-300">
             © 2024 Ordery. All rights reserved.
