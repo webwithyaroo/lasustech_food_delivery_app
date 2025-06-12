@@ -12,7 +12,10 @@ export default function CartPage() {
   const { toast } = useToast();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const tax = total * 0.1; // 10% tax
   const deliveryFee = total > 50 ? 0 : 5.99; // Free delivery over $50
   const grandTotal = total + tax + deliveryFee;
@@ -69,9 +72,8 @@ export default function CartPage() {
             Add some delicious items to your cart and come back!
           </p>
           <Button
-            onClick={() => window.location.href = "/menu"}
-            className="bg-primary text-white hover:bg-primary/90"
-          >
+            onClick={() => (window.location.href = "/menu")}
+            className="bg-primary text-white hover:bg-primary/90">
             Browse Menu
           </Button>
         </div>
@@ -89,8 +91,7 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md flex items-center gap-4"
-                >
+                  className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md flex items-center gap-4">
                   <div className="relative w-24 h-24 flex-shrink-0">
                     <img
                       src={item.image}
@@ -99,8 +100,7 @@ export default function CartPage() {
                     />
                     <Badge
                       variant="secondary"
-                      className="absolute top-0 right-0 bg-white/90 text-black"
-                    >
+                      className="absolute top-0 right-0 bg-white/90 text-black">
                       ${item.price}
                     </Badge>
                   </div>
@@ -111,16 +111,14 @@ export default function CartPage() {
                         <Button
                           variant="outline"
                           size="icon"
-                          onClick={() => handleQuantityChange(item.id, -1)}
-                        >
+                          onClick={() => handleQuantityChange(item.id, -1)}>
                           <Minus className="h-4 w-4" />
                         </Button>
                         <span className="w-8 text-center">{item.quantity}</span>
                         <Button
                           variant="outline"
                           size="icon"
-                          onClick={() => handleQuantityChange(item.id, 1)}
-                        >
+                          onClick={() => handleQuantityChange(item.id, 1)}>
                           <Plus className="h-4 w-4" />
                         </Button>
                       </div>
@@ -128,8 +126,7 @@ export default function CartPage() {
                         variant="ghost"
                         size="icon"
                         className="text-red-500 hover:text-red-600 hover:bg-red-50"
-                        onClick={() => handleRemoveItem(item.id)}
-                      >
+                        onClick={() => handleRemoveItem(item.id)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -175,8 +172,7 @@ export default function CartPage() {
               <Button
                 className="w-full bg-primary text-white hover:bg-primary/90"
                 onClick={handleCheckout}
-                disabled={isCheckingOut}
-              >
+                disabled={isCheckingOut}>
                 {isCheckingOut ? "Processing..." : "Checkout"}
               </Button>
               {total < 50 && (

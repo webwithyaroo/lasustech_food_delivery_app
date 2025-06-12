@@ -75,8 +75,8 @@ export default function CareersPage() {
             Join Our Team
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            Help us revolutionize the food delivery industry while working with a
-            team of passionate individuals.
+            Help us revolutionize the food delivery industry while working with
+            a team of passionate individuals.
           </p>
           <Button className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
             View All Positions
@@ -92,12 +92,12 @@ export default function CareersPage() {
             <div className="space-y-4">
               <p className="text-gray-600 dark:text-gray-300">
                 At Ordery, we believe in creating an environment where everyone
-                can thrive. Our culture is built on innovation, collaboration, and
-                a shared passion for delivering exceptional experiences.
+                can thrive. Our culture is built on innovation, collaboration,
+                and a shared passion for delivering exceptional experiences.
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                We value diversity, encourage creativity, and support personal and
-                professional growth. Join us in shaping the future of food
+                We value diversity, encourage creativity, and support personal
+                and professional growth. Join us in shaping the future of food
                 delivery!
               </p>
             </div>
@@ -123,13 +123,17 @@ export default function CareersPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit) => (
-              <Card key={benefit.title} className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <Card
+                key={benefit.title}
+                className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                 <CardContent className="p-6 text-center">
                   <div className="text-4xl mb-4">{benefit.icon}</div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {benefit.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -143,17 +147,18 @@ export default function CareersPage() {
           </h2>
           <div className="space-y-6">
             {openings.map((job) => (
-              <Card 
-                key={job.title} 
-                className="hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
-              >
+              <Card
+                key={job.title}
+                className="hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                 <CardContent className="p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
                       <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                         {job.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">{job.description}</p>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
+                        {job.description}
+                      </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <Badge
                           variant="secondary"

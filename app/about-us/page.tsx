@@ -56,8 +56,9 @@ export default function AboutUsPage() {
           About Ordery
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          We're on a mission to transform the way people experience food delivery,
-          making it more convenient, reliable, and enjoyable for everyone.
+          We're on a mission to transform the way people experience food
+          delivery, making it more convenient, reliable, and enjoyable for
+          everyone.
         </p>
       </div>
 
@@ -67,8 +68,9 @@ export default function AboutUsPage() {
           <h2 className="text-3xl font-semibold mb-6">Our Story</h2>
           <div className="space-y-4 text-gray-600">
             <p>
-              Founded in 2023, Ordery began with a simple idea: to connect people
-              with their favorite restaurants in the most seamless way possible.
+              Founded in 2023, Ordery began with a simple idea: to connect
+              people with their favorite restaurants in the most seamless way
+              possible.
             </p>
             <p>
               What started as a small startup has grown into a thriving platform
@@ -112,8 +114,8 @@ export default function AboutUsPage() {
           <div>
             <h3 className="text-xl font-semibold mb-4">Quality First</h3>
             <p className="text-gray-600">
-              We partner with the best restaurants to ensure every meal meets our
-              high standards.
+              We partner with the best restaurants to ensure every meal meets
+              our high standards.
             </p>
           </div>
           <div>
@@ -161,14 +163,14 @@ export default function AboutUsPage() {
           Join Us in Revolutionizing Food Delivery
         </h2>
         <p className="text-xl mb-8 max-w-2xl mx-auto">
-          Whether you're a restaurant owner looking to expand your reach or a food
-          lover seeking convenience, we'd love to have you join our community.
+          Whether you're a restaurant owner looking to expand your reach or a
+          food lover seeking convenience, we'd love to have you join our
+          community.
         </p>
         <div className="space-x-4">
           <Button
             variant="secondary"
-            className="bg-white text-accent hover:bg-gray-100"
-          >
+            className="bg-white text-accent hover:bg-gray-100">
             Partner with Us
           </Button>
           <Button variant="outline" className="text-white border-white">

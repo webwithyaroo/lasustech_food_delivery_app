@@ -19,7 +19,7 @@ const menuItems = [
     price: 18.99,
     image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3",
     description: "Fresh mozzarella, tomatoes, and basil on a crispy crust",
-    category: "Popular Items"
+    category: "Popular Items",
   },
   {
     id: "2",
@@ -27,7 +27,7 @@ const menuItems = [
     price: 24.99,
     image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288",
     description: "Fresh grilled salmon with quinoa and seasonal vegetables",
-    category: "Healthy Options"
+    category: "Healthy Options",
   },
   {
     id: "3",
@@ -35,7 +35,7 @@ const menuItems = [
     price: 21.99,
     image: "https://images.unsplash.com/photo-1556761223-4c4282c73f77",
     description: "Handmade pasta with wild mushrooms and truffle oil",
-    category: "Specials"
+    category: "Specials",
   },
   {
     id: "4",
@@ -43,7 +43,7 @@ const menuItems = [
     price: 19.99,
     image: "https://images.unsplash.com/photo-1590301157890-4810ed352733",
     description: "Marinated beef, kimchi, and rice with house sauce",
-    category: "Popular Items"
+    category: "Popular Items",
   },
   {
     id: "5",
@@ -51,7 +51,7 @@ const menuItems = [
     price: 22.99,
     image: "https://images.unsplash.com/photo-1542528180-a1208c5169a5",
     description: "Hummus, falafel, tabbouleh, and warm pita bread",
-    category: "Healthy Options"
+    category: "Healthy Options",
   },
   {
     id: "6",
@@ -59,7 +59,7 @@ const menuItems = [
     price: 16.99,
     image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c",
     description: "Fresh tuna, spicy mayo, avocado, and cucumber",
-    category: "Specials"
+    category: "Specials",
   },
   {
     id: "7",
@@ -67,7 +67,7 @@ const menuItems = [
     price: 26.99,
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
     description: "Premium wagyu beef with truffle aioli and aged cheddar",
-    category: "Popular Items"
+    category: "Popular Items",
   },
   {
     id: "8",
@@ -75,8 +75,8 @@ const menuItems = [
     price: 15.99,
     image: "https://images.unsplash.com/photo-1590301157890-4810ed352733",
     description: "Organic acai blend topped with fresh fruits and granola",
-    category: "Healthy Options"
-  }
+    category: "Healthy Options",
+  },
 ];
 
 export default function RestaurantPage() {
@@ -86,12 +86,14 @@ export default function RestaurantPage() {
   const [activeTab, setActiveTab] = useState("menu");
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const restaurant = restaurants.find(r => r.id.toString() === params.id);
+  const restaurant = restaurants.find((r) => r.id.toString() === params.id);
 
   if (!restaurant) {
     return (
       <div className="container mx-auto px-4 py-8 mt-20 text-center">
-        <h1 className="text-2xl font-bold text-red-600">Restaurant not found</h1>
+        <h1 className="text-2xl font-bold text-red-600">
+          Restaurant not found
+        </h1>
       </div>
     );
   }
@@ -154,10 +156,13 @@ export default function RestaurantPage() {
         <Button
           variant="outline"
           className="flex items-center gap-2"
-          onClick={() => setIsFavorite(!isFavorite)}
-        >
-          <Heart className={`w-5 h-5 ${isFavorite ? 'fill-red-500 stroke-red-500' : ''}`} />
-          {isFavorite ? 'Saved' : 'Save'}
+          onClick={() => setIsFavorite(!isFavorite)}>
+          <Heart
+            className={`w-5 h-5 ${
+              isFavorite ? "fill-red-500 stroke-red-500" : ""
+            }`}
+          />
+          {isFavorite ? "Saved" : "Save"}
         </Button>
         <Button variant="outline" className="flex items-center gap-2">
           <Share2 className="w-5 h-5" />
@@ -178,8 +183,7 @@ export default function RestaurantPage() {
             {menuItems.map((item) => (
               <div
                 key={item.id}
-                className="relative overflow-hidden rounded-2xl shadow-lg group transition-transform duration-500 hover:scale-105"
-              >
+                className="relative overflow-hidden rounded-2xl shadow-lg group transition-transform duration-500 hover:scale-105">
                 <div className="h-80">
                   <img
                     src={item.image}
@@ -188,16 +192,21 @@ export default function RestaurantPage() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                  <h3 className="text-2xl font-semibold text-white">{item.name}</h3>
-                  <p className="text-base text-secondary dark:text-white mb-3">{item.description}</p>
+                  <h3 className="text-2xl font-semibold text-white">
+                    {item.name}
+                  </h3>
+                  <p className="text-base text-secondary dark:text-white mb-3">
+                    {item.description}
+                  </p>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xl font-bold text-white">${item.price}</span>
+                    <span className="text-xl font-bold text-white">
+                      ${item.price}
+                    </span>
                   </div>
                   <Button
                     onClick={() => handleAddToCart(item)}
                     size="lg"
-                    className="w-full bg-white text-black hover:bg-primary hover:text-white transition-colors duration-300"
-                  >
+                    className="w-full bg-white text-black hover:bg-primary hover:text-white transition-colors duration-300">
                     Add to Cart
                   </Button>
                 </div>
@@ -209,7 +218,9 @@ export default function RestaurantPage() {
         <TabsContent value="info" className="mt-6">
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-2">About {restaurant.name}</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                About {restaurant.name}
+              </h3>
               <p className="text-gray-600">{restaurant.description}</p>
             </div>
             <div>
@@ -235,7 +246,9 @@ export default function RestaurantPage() {
         <TabsContent value="reviews" className="mt-6">
           <div className="text-center py-8">
             <h3 className="text-xl font-semibold mb-2">Reviews Coming Soon</h3>
-            <p className="text-gray-600">We're working on gathering customer reviews.</p>
+            <p className="text-gray-600">
+              We're working on gathering customer reviews.
+            </p>
           </div>
         </TabsContent>
       </Tabs>

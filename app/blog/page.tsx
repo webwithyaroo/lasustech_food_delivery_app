@@ -80,10 +80,12 @@ export default function BlogPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Ordery Blog</h1>
+          <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+            Ordery Blog
+          </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Discover the latest news, insights, and stories from the world of food
-            delivery.
+            Discover the latest news, insights, and stories from the world of
+            food delivery.
           </p>
         </div>
 
@@ -104,12 +106,15 @@ export default function BlogPage() {
               {categories.map((category) => (
                 <Button
                   key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category ? "default" : "outline"
+                  }
                   onClick={() => setSelectedCategory(category)}
-                  className={selectedCategory === category 
-                    ? "bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90" 
-                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent border-gray-200 dark:border-gray-700"}
-                >
+                  className={
+                    selectedCategory === category
+                      ? "bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90"
+                      : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent border-gray-200 dark:border-gray-700"
+                  }>
                   {category}
                 </Button>
               ))}
@@ -120,7 +125,9 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
-            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+            <Card
+              key={post.id}
+              className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
               <div className="relative h-48">
                 <img
                   src={post.image}
@@ -129,8 +136,7 @@ export default function BlogPage() {
                 />
                 <Badge
                   className="absolute top-4 right-4 bg-primary/90 text-white dark:bg-accent/90"
-                  variant="secondary"
-                >
+                  variant="secondary">
                   {post.category}
                 </Badge>
               </div>
@@ -138,7 +144,9 @@ export default function BlogPage() {
                 <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white hover:text-primary dark:hover:text-accent transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  {post.excerpt}
+                </p>
                 <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
@@ -155,8 +163,7 @@ export default function BlogPage() {
                   </span>
                   <Button
                     variant="ghost"
-                    className="text-primary hover:text-primary/90 dark:text-accent dark:hover:text-accent/90 p-0"
-                  >
+                    className="text-primary hover:text-primary/90 dark:text-accent dark:hover:text-accent/90 p-0">
                     Read More <ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>

@@ -90,8 +90,7 @@ export default function HelpCenterPage() {
         {supportCategories.map((category) => (
           <Card
             key={category.title}
-            className="hover:shadow-lg transition-shadow cursor-pointer"
-          >
+            className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <div className="text-4xl mb-4">{category.icon}</div>
               <h3 className="text-lg font-semibold mb-2">{category.title}</h3>
@@ -102,7 +101,9 @@ export default function HelpCenterPage() {
       </div>
 
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-semibold mb-6">
+          Frequently Asked Questions
+        </h2>
         <div className="space-y-4">
           {filteredFaqs.map((faq, index) => (
             <Card key={index} className="overflow-hidden">
@@ -112,8 +113,7 @@ export default function HelpCenterPage() {
                   className="w-full p-4 flex justify-between items-center text-left"
                   onClick={() =>
                     setExpandedFaq(expandedFaq === index ? null : index)
-                  }
-                >
+                  }>
                   <span className="font-medium">{faq.question}</span>
                   {expandedFaq === index ? (
                     <ChevronUp className="h-5 w-5" />

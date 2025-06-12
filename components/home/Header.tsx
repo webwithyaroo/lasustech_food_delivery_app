@@ -4,7 +4,7 @@ import { navbarLinks } from "@/components/constants";
 import { Button } from "../ui/button";
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, ShoppingCart } from "lucide-react";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import { useCart } from "@/hooks/use-carts";
 
 const NavigationBar = () => {
@@ -62,10 +62,11 @@ const NavigationBar = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`text-lg transition-colors duration-300 ${pathname === link.href
-                    ? "text-primary font-semibold dark:text-accent"
-                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent"
-                    }`}>
+                  className={`text-lg transition-colors duration-300 ${
+                    pathname === link.href
+                      ? "text-primary font-semibold dark:text-accent"
+                      : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent"
+                  }`}>
                   {link.label}
                 </a>
               </li>
@@ -75,7 +76,9 @@ const NavigationBar = () => {
           {/* Right Side (Cart + Buttons + Dark Mode Toggle) Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
             {/* Cart Icon with Counter */}
-            <a href="/cart" className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+            <a
+              href="/cart"
+              className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
               <ShoppingCart className="w-6 h-6 text-gray-600 dark:text-gray-300" />
               {cartItemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -143,15 +146,16 @@ const NavigationBar = () => {
               <li>
                 <a
                   href="/cart"
-                  className="flex items-center px-4 py-2 text-lg text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition-colors">
-                  <ShoppingCart className="w-5 h-5 mr-2" />
-                  Cart
-                  {cartItemCount > 0 && (
-                    <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-1">
-                      {cartItemCount}
-                    </span>
-                  )}
+                  className="flex items-center gap-1 hover:text-primary transition-colors">
+                  <ShoppingCart className="h-5 w-5" />
+                  <span className="font-medium">{cartItemCount}</span>
                 </a>
+                Cart
+                {cartItemCount > 0 && (
+                  <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                    {cartItemCount}
+                  </span>
+                )}
               </li>
               <li>
                 <a

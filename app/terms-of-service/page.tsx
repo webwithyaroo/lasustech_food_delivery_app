@@ -47,17 +47,17 @@ export default function TermsOfServicePage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-semibold mb-8 font-inter">Terms of Service</h1>
-        
+        <h1 className="text-4xl font-semibold mb-8 font-inter">
+          Terms of Service
+        </h1>
+
         <div className="bg-secondary/20 rounded-lg p-6 mb-8">
-          <p className="text-lg">
-            Last updated: January 1, 2024
-          </p>
+          <p className="text-lg">Last updated: January 1, 2024</p>
           <p className="mt-4">
-            Please read these Terms of Service ("Terms") carefully before using the
-            Ordery platform. These Terms constitute a legally binding agreement
-            between you and Ordery regarding your use of our food delivery platform
-            and services.
+            Please read these Terms of Service ("Terms") carefully before using
+            the Ordery platform. These Terms constitute a legally binding
+            agreement between you and Ordery regarding your use of our food
+            delivery platform and services.
           </p>
         </div>
 
@@ -75,8 +75,8 @@ export default function TermsOfServicePage() {
         <div className="mt-12 p-6 bg-accent/10 rounded-lg">
           <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
           <p className="text-gray-600">
-            If you have any questions about these Terms of Service, please contact
-            us at:
+            If you have any questions about these Terms of Service, please
+            contact us at:
           </p>
           <ul className="list-disc list-inside mt-4 text-gray-600">
             <li>Email: support@ordery.com</li>

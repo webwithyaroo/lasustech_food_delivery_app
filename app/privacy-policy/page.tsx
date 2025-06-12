@@ -97,7 +97,9 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="container mx-auto px-4 py-8" mt-2>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-semibold mb-8 font-inter">Privacy Policy</h1>
+        <h1 className="text-4xl font-semibold mb-8 font-inter">
+          Privacy Policy
+        </h1>
 
         <div className="bg-secondary/20 rounded-lg p-6 mb-8">
           <p className="text-lg">Last updated: January 1, 2024</p>
@@ -143,8 +145,8 @@ export default function PrivacyPolicyPage() {
 
         <div className="mt-8 text-center text-gray-600">
           <p>
-            By using Ordery, you agree to the collection and use of information in
-            accordance with this Privacy Policy.
+            By using Ordery, you agree to the collection and use of information
+            in accordance with this Privacy Policy.
           </p>
         </div>
       </div>
