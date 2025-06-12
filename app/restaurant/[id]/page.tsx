@@ -15,35 +15,66 @@ import { useParams } from "next/navigation";
 const menuItems = [
   {
     id: "1",
-    name: "Signature Dish 1",
-    price: 24.99,
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
-    description: "A delightful combination of fresh ingredients",
-    calories: 420,
-    ingredients: ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
-    allergens: ["Dairy"],
+    name: "Classic Margherita Pizza",
+    price: 18.99,
+    image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3",
+    description: "Fresh mozzarella, tomatoes, and basil on a crispy crust",
     category: "Popular Items"
   },
   {
     id: "2",
-    name: "Special Item 2",
-    price: 19.99,
-    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445",
-    description: "Our chef's special creation",
-    calories: 380,
-    ingredients: ["Ingredient 4", "Ingredient 5", "Ingredient 6"],
-    allergens: ["Nuts"],
-    category: "Specials"
+    name: "Grilled Salmon Bowl",
+    price: 24.99,
+    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288",
+    description: "Fresh grilled salmon with quinoa and seasonal vegetables",
+    category: "Healthy Options"
   },
   {
     id: "3",
-    name: "Healthy Choice 3",
+    name: "Truffle Mushroom Pasta",
+    price: 21.99,
+    image: "https://images.unsplash.com/photo-1556761223-4c4282c73f77",
+    description: "Handmade pasta with wild mushrooms and truffle oil",
+    category: "Specials"
+  },
+  {
+    id: "4",
+    name: "Korean BBQ Bowl",
+    price: 19.99,
+    image: "https://images.unsplash.com/photo-1590301157890-4810ed352733",
+    description: "Marinated beef, kimchi, and rice with house sauce",
+    category: "Popular Items"
+  },
+  {
+    id: "5",
+    name: "Mediterranean Platter",
+    price: 22.99,
+    image: "https://images.unsplash.com/photo-1542528180-a1208c5169a5",
+    description: "Hummus, falafel, tabbouleh, and warm pita bread",
+    category: "Healthy Options"
+  },
+  {
+    id: "6",
+    name: "Spicy Tuna Roll",
     price: 16.99,
-    image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
-    description: "A nutritious and delicious option",
-    calories: 300,
-    ingredients: ["Ingredient 7", "Ingredient 8", "Ingredient 9"],
-    allergens: [],
+    image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c",
+    description: "Fresh tuna, spicy mayo, avocado, and cucumber",
+    category: "Specials"
+  },
+  {
+    id: "7",
+    name: "Wagyu Beef Burger",
+    price: 26.99,
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+    description: "Premium wagyu beef with truffle aioli and aged cheddar",
+    category: "Popular Items"
+  },
+  {
+    id: "8",
+    name: "Acai Power Bowl",
+    price: 15.99,
+    image: "https://images.unsplash.com/photo-1590301157890-4810ed352733",
+    description: "Organic acai blend topped with fresh fruits and granola",
     category: "Healthy Options"
   }
 ];
@@ -143,30 +174,34 @@ export default function RestaurantPage() {
         </TabsList>
 
         <TabsContent value="menu" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {menuItems.map((item) => (
-              <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="relative h-48">
+              <div
+                key={item.id}
+                className="relative overflow-hidden rounded-2xl shadow-lg group transition-transform duration-500 hover:scale-105"
+              >
+                <div className="h-80">
                   <img
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <CardContent className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{item.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold">${item.price}</span>
-                    <Button
-                      onClick={() => handleAddToCart(item)}
-                      className="bg-primary text-white hover:bg-primary/90"
-                    >
-                      Add to Cart
-                    </Button>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
+                  <h3 className="text-2xl font-semibold text-white">{item.name}</h3>
+                  <p className="text-base text-secondary dark:text-white mb-3">{item.description}</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xl font-bold text-white">${item.price}</span>
                   </div>
-                </CardContent>
-              </Card>
+                  <Button
+                    onClick={() => handleAddToCart(item)}
+                    size="lg"
+                    className="w-full bg-white text-black hover:bg-primary hover:text-white transition-colors duration-300"
+                  >
+                    Add to Cart
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
         </TabsContent>
