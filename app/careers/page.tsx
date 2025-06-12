@@ -67,7 +67,7 @@ const openings = [
 
 export default function CareersPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-20">
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-semibold mb-6 font-inter">
@@ -90,13 +90,14 @@ export default function CareersPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-4">
             <p className="text-gray-600">
-              At Ordery, we believe in creating an environment where everyone can
-              thrive. Our culture is built on innovation, collaboration, and a
-              shared passion for delivering exceptional experiences.
+              At Ordery, we believe in creating an environment where everyone
+              can thrive. Our culture is built on innovation, collaboration, and
+              a shared passion for delivering exceptional experiences.
             </p>
             <p className="text-gray-600">
               We value diversity, encourage creativity, and support personal and
-              professional growth. Join us in shaping the future of food delivery!
+              professional growth. Join us in shaping the future of food
+              delivery!
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -144,15 +145,21 @@ export default function CareersPage() {
                     <h3 className="text-xl font-semibold mb-2">{job.title}</h3>
                     <p className="text-gray-600 mb-4">{job.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge variant="secondary" className="flex items-center gap-1">
+                      <Badge
+                        variant="secondary"
+                        className="flex items-center gap-1">
                         <Briefcase className="h-4 w-4" />
                         {job.department}
                       </Badge>
-                      <Badge variant="secondary" className="flex items-center gap-1">
+                      <Badge
+                        variant="secondary"
+                        className="flex items-center gap-1">
                         <MapPin className="h-4 w-4" />
                         {job.location}
                       </Badge>
-                      <Badge variant="secondary" className="flex items-center gap-1">
+                      <Badge
+                        variant="secondary"
+                        className="flex items-center gap-1">
                         <Clock className="h-4 w-4" />
                         {job.type}
                       </Badge>
