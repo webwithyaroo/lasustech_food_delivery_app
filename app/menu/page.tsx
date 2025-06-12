@@ -135,10 +135,12 @@ export default function MenuPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-background overflow-x-hidden">
       <div className="container mx-auto px-4 py-8 mt-20">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 md:mb-0">Our Menu</h1>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 md:mb-0">
+            Our Menu
+          </h1>
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
@@ -149,6 +151,11 @@ export default function MenuPage() {
               <Button
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
+                className={
+                  selectedCategory === category
+                    ? "bg-accent text-white"
+                    : "bg-transparent outline-none focus-within:outline-none"
+                }
                 onClick={() => setSelectedCategory(category)}>
                 {category}
               </Button>
@@ -160,7 +167,7 @@ export default function MenuPage() {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              className="bg-white dark:bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={item.image}
@@ -168,25 +175,33 @@ export default function MenuPage() {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
                 <div className="absolute top-2 right-2">
-                  <Badge variant="secondary" className="bg-white/90 text-black">
+                  <Badge className="bg-white/90 dark:bg-black/80 text-black dark:text-white">
                     ${item.price}
                   </Badge>
                 </div>
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {item.name}
+                  </h3>
                   <div className="flex items-center">
                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    <span className="ml-1 text-sm">{item.rating}</span>
+                    <span className="ml-1 text-sm text-gray-700 dark:text-gray-300">
+                      {item.rating}
+                    </span>
                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                   {item.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <Badge variant="outline">{item.category}</Badge>
-                  <span className="text-sm text-gray-500">
+                  <Badge
+                    variant="outline"
+                    className="text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600">
+                    {item.category}
+                  </Badge>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
                     {item.reviews} reviews
                   </span>
                 </div>
@@ -199,7 +214,7 @@ export default function MenuPage() {
                       disabled={getItemQuantity(item.id) === 0}>
                       <Minus className="h-4 w-4" />
                     </Button>
-                    <span className="w-8 text-center">
+                    <span className="w-8 text-center text-gray-800 dark:text-white">
                       {getItemQuantity(item.id)}
                     </span>
                     <Button
@@ -222,13 +237,6 @@ export default function MenuPage() {
           ))}
         </div>
       </div>
-      <footer className="bg-white dark:bg-gray-800  mt-auto py-6">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-gray-600 dark:text-gray-300">
-            © 2024 Ordery. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
