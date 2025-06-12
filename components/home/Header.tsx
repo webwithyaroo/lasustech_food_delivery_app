@@ -4,9 +4,10 @@ import { navbarLinks } from "@/components/constants";
 import { Button } from "../ui/button";
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { usePathname } from 'next/navigation';
 
 const NavigationBar = () => {
-  const [active, setActive] = useState(0);
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -53,12 +54,12 @@ const NavigationBar = () => {
 
           {/* Desktop Nav */}
           <ul className="hidden lg:flex space-x-6 items-center">
-            {navbarLinks.map((link, i) => (
-              <li onClick={() => setActive(i)} key={link.href}>
+            {navbarLinks.map((link) => (
+              <li key={link.href}>
                 <a
                   href={link.href}
                   className={`text-lg transition-colors duration-300  ${
-                    active === i
+                    pathname === link.href
                       ? "text-accent font-semibold"
                       : "text-gray-600  hover:text-accent dark:text-white"
                   }`}>
@@ -150,11 +151,11 @@ const NavigationBar = () => {
                 key={link.href}
                 href={link.href}
                 onClick={() => {
-                  setActive(i);
+                  setMenuOpen(false);
                   setMenuOpen(false);
                 }}
                 className={`text-base  block transition-colors duration-300 ${
-                  active === i
+                  pathname === link.href
                     ? "text-accent font-semibold"
                     : "text-black dark:text-white"
                 }`}>

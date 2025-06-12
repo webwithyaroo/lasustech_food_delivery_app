@@ -1,4 +1,5 @@
 import React from "react";
+import { footerLinks } from "../constants";
 
 const FooterSection = () => {
   return (
@@ -25,26 +26,13 @@ const FooterSection = () => {
             Quick Links
           </h3>
           <ul className="space-y-2 font-montserrat">
-            <li>
-              <a href="#about" className="hover:text-accent transition">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#menu" className="hover:text-accent transition">
-                Menu
-              </a>
-            </li>
-            <li>
-              <a href="#services" className="hover:text-accent transition">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-accent transition">
-                Contact
-              </a>
-            </li>
+            {footerLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="hover:text-accent transition">
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
