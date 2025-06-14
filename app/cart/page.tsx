@@ -4,7 +4,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-carts";
 import { useToast } from "@/hooks/use-toast";
-import { Minus, Plus, Trash2, ShoppingBag, CheckCircle2 } from "lucide-react";
+import {
+  Minus,
+  Plus,
+  Trash2,
+  ShoppingBag,
+  Check,
+  PartyPopper,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
 import confetti from "canvas-confetti";
@@ -53,46 +60,59 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     setIsCheckingOut(true);
+
+    // Simulate checkout process
     setTimeout(() => {
+      setShowSuccess(true);
       clearCart();
-      toast({
-        title: "Order placed successfully!",
-        description: "Thank you for your order. It will be delivered soon.",
+
+      // Trigger confetti effect
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
       });
-      setIsCheckingOut(false);
-      router.push("/track-order");
-    }, 2000);
+
+      // After showing success for 3 seconds, redirect to tracking
+      setTimeout(() => {
+        router.push("/track-order");
+      }, 3000);
+    }, 1500);
   };
 
-  useEffect(() => {
-    if (showSuccess) {
-      const end = Date.now() + 2 * 1000;
-
-      const colors = ["#bb0000", "#ffffff"];
-
-      (function frame() {
-        confetti({
-          particleCount: 2,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0, y: 0.6 },
-          colors,
-        });
-
-        confetti({
-          particleCount: 2,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1, y: 0.6 },
-          colors,
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      })();
-    }
-  }, [showSuccess]);
+  // Show success card if checkout is complete
+  if (showSuccess) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center">
+        <div className="container mx-auto px-4 ">
+          <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div className="p-8 text-center">
+              <div className="mb-6 flex justify-center">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                  <Check className="w-8 h-8 text-green-600 dark:text-green-400" />
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white flex items-center justify-center gap-2">
+                Order Confirmed!{" "}
+                <PartyPopper className="w-6 h-6 text-yellow-500" />
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Thank you for your order. Your food is being prepared with care!
+              </p>
+              <div className="space-y-4">
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Redirecting to order tracking...
+                </p>
+                <div className="animate-pulse w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full">
+                  <div className="bg-green-500 h-2 rounded-full w-2/3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -224,12 +244,21 @@ export default function CartPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </div>{" "}
               <Button
-                className="w-full bg-primary dark:bg-white  hover:bg-primary/90"
                 onClick={handleCheckout}
-                disabled={isCheckingOut}>
-                {isCheckingOut ? "Processing..." : "Checkout"}
+                disabled={isCheckingOut}
+                className="w-full bg-primary dark:bg-white hover:bg-primary/90 dark:hover:bg-white/90 relative overflow-hidden">
+                {isCheckingOut ? (
+                  <>
+                    <span className="opacity-0">Checkout</span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-5 h-5 border-t-2 border-r-2 border-white dark:border-black rounded-full animate-spin"></div>
+                    </div>
+                  </>
+                ) : (
+                  "Checkout"
+                )}
               </Button>
               {total < 50 && (
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">

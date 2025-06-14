@@ -76,14 +76,14 @@ export default function BlogPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-10">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 ">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-start mb-12">
           <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
             Ordery Blog
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl">
+          <p className="text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl">
             Discover the latest news, insights, and stories from the world of
             food delivery.
           </p>
@@ -113,7 +113,7 @@ export default function BlogPage() {
                   className={
                     selectedCategory === category
                       ? "bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90"
-                      : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent border-gray-200 dark:border-gray-700"
+                      : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white border-gray-200 dark:border-gray-700"
                   }>
                   {category}
                 </Button>
@@ -161,7 +161,7 @@ export default function BlogPage() {
                   </span>
                   <Button
                     variant="ghost"
-                    className="text-primary hover:text-primary/90 dark:text-accent dark:hover:text-accent/90 py-2 px-4">
+                    className="text-primary hover:text-primary/90 dark:text-white dark:hover:text-primary py-2 px-4">
                     Read More <ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>

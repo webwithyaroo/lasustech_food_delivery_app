@@ -164,6 +164,7 @@ export default function MenuPage() {
               </Button>
               {categories.map((category) => (
                 <Button
+                  className={selectedCategory === category ? "bg-accent" : ""}
                   key={category}
                   variant={
                     selectedCategory === category ? "default" : "outline"
