@@ -83,7 +83,7 @@ export default function BlogPage() {
           <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
             Ordery Blog
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl">
+          <p className="text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl">
             Discover the latest news, insights, and stories from the world of
             food delivery.
           </p>
