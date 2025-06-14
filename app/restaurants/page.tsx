@@ -81,7 +81,7 @@ export default function RestaurantsPage() {
   return (
     <div className="min-h-screen ">
       {/* Hero Section */}
-      <section className="relative py-20">
+      <section className="relative pt-10">
         <Image
           src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Food Banner"

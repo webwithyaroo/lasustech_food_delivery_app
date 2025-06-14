@@ -1,21 +1,7 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  MapPin,
-  Clock,
-  Briefcase,
-  Building2,
-  Users2,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
+import { MapPin, Clock, Briefcase } from "lucide-react";
 
 const benefits = [
   {
@@ -81,183 +67,129 @@ const openings = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-24">
-        <div className="container mx-auto px-4">
-          <div className="relative z-10 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 dark:from-purple-400 dark:to-pink-400">
-              Join Our Team
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Help us revolutionize the food delivery industry while working
-              with a team of passionate individuals who are changing the way
-              people experience food.
-            </p>
-            <Button
-              size="lg"
-              className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
-              View All Positions
-            </Button>
-          </div>
-
-          {/* Decorative elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-40 -right-32 w-96 h-96 rounded-full bg-purple-200/20 dark:bg-purple-900/20 blur-3xl"></div>
-            <div className="absolute -bottom-24 -left-40 w-96 h-96 rounded-full bg-pink-200/20 dark:bg-pink-900/20 blur-3xl"></div>
-          </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+      <div className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            Join Our Team
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+            Help us revolutionize the food delivery industry while working with
+            a team of passionate individuals.
+          </p>
+          <Button className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
+            View All Positions
+          </Button>
         </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary dark:text-accent mb-2">
-                50+
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">
-                Team Members
-              </div>
+        {/* Culture Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            Life at Ordery
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <p className="text-gray-600 dark:text-gray-300">
+                At Ordery, we believe in creating an environment where everyone
+                can thrive. Our culture is built on innovation, collaboration,
+                and a shared passion for delivering exceptional experiences.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                We value diversity, encourage creativity, and support personal
+                and professional growth. Join us in shaping the future of food
+                delivery!
+              </p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary dark:text-accent mb-2">
-                15+
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">Countries</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary dark:text-accent mb-2">
-                4.8★
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">
-                Employee Rating
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary dark:text-accent mb-2">
-                92%
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">
-                Retention Rate
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+                alt="Team collaboration"
+                className="rounded-lg w-full h-48 object-cover"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
+                alt="Office culture"
+                className="rounded-lg w-full h-48 object-cover"
+              />
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Benefits Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              Why Join Ordery?
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              We offer competitive benefits and a supportive work environment
-              that helps you grow and succeed.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
+        {/* Benefits Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            Benefits
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit) => (
               <Card
-                key={index}
-                className="border-none shadow-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
+                key={benefit.title}
+                className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardContent className="p-6 text-center">
                   <div className="text-4xl mb-4">{benefit.icon}</div>
-                  <CardTitle className="text-xl mb-2">
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                     {benefit.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-300">
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
                     {benefit.description}
-                  </CardDescription>
-                </CardHeader>
+                  </p>
+                </CardContent>
               </Card>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Open Positions Section */}
-      <section className="py-24 bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              Open Positions
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Join our growing team and help shape the future of food delivery.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {openings.map((job, index) => (
+        {/* Open Positions */}
+        <div>
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+            Open Positions
+          </h2>
+          <div className="space-y-6">
+            {openings.map((job) => (
               <Card
-                key={index}
-                className="group cursor-pointer overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300">
+                key={job.title}
+                className="hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                 <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                         {job.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                        <Building2 className="w-4 h-4" />
-                        <span>{job.department}</span>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
+                        {job.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1 bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent">
+                          <Briefcase className="h-4 w-4" />
+                          {job.department}
+                        </Badge>
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1 bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent">
+                          <MapPin className="h-4 w-4" />
+                          {job.location}
+                        </Badge>
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1 bg-primary/10 text-primary dark:bg-accent/10 dark:text-accent">
+                          <Clock className="h-4 w-4" />
+                          {job.type}
+                        </Badge>
                       </div>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-primary dark:text-accent transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300" />
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {job.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-100 dark:bg-gray-700">
-                      <MapPin className="w-3 h-3 mr-1" /> {job.location}
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-100 dark:bg-gray-700">
-                      <Clock className="w-3 h-3 mr-1" /> {job.type}
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-100 dark:bg-gray-700">
-                      <Briefcase className="w-3 h-3 mr-1" /> {job.experience}
-                    </Badge>
+                    <Button className="bg-primary text-white hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90">
+                      Apply Now
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <Card className="relative overflow-hidden border-none bg-gradient-to-r from-primary/90 to-purple-600/90 dark:from-purple-900 dark:to-pink-900">
-            <CardContent className="p-12 text-center relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                Ready to Join Our Team?
-              </h2>
-              <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-                Take the first step towards an exciting career at Ordery. We're
-                always looking for talented individuals to join our team.
-              </p>
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-white text-primary hover:bg-white/90 dark:bg-white dark:text-primary dark:hover:bg-white/90">
-                Apply Now
-              </Button>
-            </CardContent>
-            <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10"></div>
-          </Card>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

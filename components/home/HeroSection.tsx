@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <section className="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center border-10 mt-20">
+    <section className="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center border-10 ">
       {/* Left Content */}
       <div>
         {/* Top Banner */}
