@@ -14,6 +14,21 @@ const NavigationBar = () => {
   const [active, setActive] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const { items } = useCart();
+
+  // CartBadge component
+  const CartBadge = () => {
+    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+    if (totalItems === 0) return null;
+
+    return (
+      <Badge
+        variant="destructive"
+        className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center p-0 text-xs">
+        {totalItems}
+      </Badge>
+    );
+  };
 
   // Set active link based on pathname
   useEffect(() => {
@@ -119,6 +134,11 @@ const NavigationBar = () => {
 
           {/* Mobile Toggle */}
           <div className="flex items-center space-x-2 lg:hidden">
+            {/* Shopping Cart */}
+            <Link href="/cart" className="relative p-2">
+              <ShoppingCart className="w-6 h-6 text-gray-600 dark:text-white hover:text-accent transition-colors duration-300" />
+              <CartBadge />
+            </Link>
             {/* Dark Mode Toggle */}
             <button
               aria-label="Toggle Dark Mode"

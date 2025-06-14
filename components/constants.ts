@@ -4,7 +4,6 @@ export const navbarLinks = [
   { label: "Menu", href: "/menu" },
   { label: "Blog", href: "/blog" },
   { label: "Track Order", href: "/track-order" },
-  { label: "Cart", href: "/cart" },
 ];
 export const footerLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
