@@ -161,7 +161,7 @@ export default function BlogPage() {
                   </span>
                   <Button
                     variant="ghost"
-                    className="text-primary hover:text-primary/90 dark:text-white dark:hover:text-accent/90 py-2 px-4">
+                    className="text-primary hover:text-primary/90 dark:text-white dark:hover:text-primary py-2 px-4">
                     Read More <ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>
