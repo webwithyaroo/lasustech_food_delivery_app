@@ -37,9 +37,12 @@ const NavigationBar = () => {
     );
     setActive(currentIndex !== -1 ? currentIndex : 0);
   }, [pathname]);
-
-  // On mount, check saved preference or system preference
+  // On mount, set initial theme state
   useEffect(() => {
+    // Always start with light mode
+    document.documentElement.classList.remove("dark");
+
+    // Check saved preference
     const saved = localStorage.getItem("darkMode");
     if (saved) {
       const isDark = saved === "true";
@@ -48,18 +51,21 @@ const NavigationBar = () => {
         document.documentElement.classList.add("dark");
       }
     } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setDarkMode(prefersDark);
-      if (prefersDark) document.documentElement.classList.add("dark");
+      // Default to light mode
+      setDarkMode(false);
+      localStorage.setItem("darkMode", "false");
     }
   }, []);
-
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
       const newMode = !prev;
-      document.documentElement.classList.toggle("dark", newMode);
+      // Update the class
+      if (newMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      // Save preference
       localStorage.setItem("darkMode", newMode.toString());
       return newMode;
     });

@@ -67,14 +67,14 @@ const openings = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 ">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
             Join Our Team
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+          <p className="text-base sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             Help us revolutionize the food delivery industry while working with
             a team of passionate individuals.
           </p>
@@ -125,7 +125,7 @@ export default function CareersPage() {
             {benefits.map((benefit) => (
               <Card
                 key={benefit.title}
-                className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                className=" border-gray-200 dark:border-gray-700">
                 <CardContent className="p-6 text-center">
                   <div className="text-4xl mb-4">{benefit.icon}</div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
@@ -149,7 +149,7 @@ export default function CareersPage() {
             {openings.map((job) => (
               <Card
                 key={job.title}
-                className="hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                className="hover:shadow-lg transition-shadow duration-300 border-gray-200 dark:border-gray-700">
                 <CardContent className="p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>

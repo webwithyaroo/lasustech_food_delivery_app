@@ -155,8 +155,8 @@ export default function MenuPage() {
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 md:mb-0">
             Our Menu
           </h1>
-          <div className="flex items-center gap-4">
-            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
+          <div className="flex items-center overflow-hidden gap-4">
+            <div className="flex gap-2 overflow-x-scroll pb-2 md:pb-0">
               <Button
                 variant={selectedCategory === null ? "default" : "outline"}
                 onClick={() => setSelectedCategory(null)}>

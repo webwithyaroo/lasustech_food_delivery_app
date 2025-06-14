@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-carts";
 import { useToast } from "@/hooks/use-toast";
+import { useTheme } from "next-themes";
 import {
   Minus,
   Plus,
@@ -20,6 +21,7 @@ export default function CartPage() {
   const router = useRouter();
   const { items, updateQuantity, removeItem, clearCart } = useCart();
   const { toast } = useToast();
+  const { theme } = useTheme();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -64,14 +66,45 @@ export default function CartPage() {
     // Simulate checkout process
     setTimeout(() => {
       setShowSuccess(true);
-      clearCart();
+      clearCart(); // Trigger confetti effect
+      const darkMode = theme === "dark";
+      const canvas = document.createElement("canvas");
+      const myConfetti = confetti.create(canvas, { resize: true });
 
-      // Trigger confetti effect
-      confetti({
-        particleCount: 100,
+      // Append canvas to body temporarily
+      document.body.appendChild(canvas);
+      canvas.style.position = "fixed";
+      canvas.style.top = "0";
+      canvas.style.left = "0";
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.pointerEvents = "none";
+      canvas.style.zIndex = "9999";
+
+      // Set canvas background for dark mode
+      if (darkMode) {
+        canvas.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+      }
+
+      myConfetti({
+        particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
+        colors: darkMode
+          ? ["#FFFFFF", "#F8F8F8", "#EEEEEE"] // Pure white colors for dark mode
+          : ["#FFD700", "#FFA500", "#FF6B6B", "#4CAF50", "#64B5F6"],
+        startVelocity: 30,
+        gravity: 0.5,
+        scalar: 0.7,
+        drift: 0,
+        ticks: 100,
+        shapes: ["circle", "square"],
       });
+
+      // Remove canvas after animation
+      setTimeout(() => {
+        document.body.removeChild(canvas);
+      }, 3000);
 
       // After showing success for 3 seconds, redirect to tracking
       setTimeout(() => {
@@ -88,12 +121,13 @@ export default function CartPage() {
           <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
             <div className="p-8 text-center">
               <div className="mb-6 flex justify-center">
+                {" "}
                 <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
                   <Check className="w-8 h-8 text-green-600 dark:text-green-400" />
                 </div>
               </div>
               <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white flex items-center justify-center gap-2">
-                Order Confirmed!{" "}
+                Order Confirmed!
                 <PartyPopper className="w-6 h-6 text-yellow-500" />
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -137,7 +171,7 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-      <div className="container mx-auto px-4 py-8 mt-20">
+      <div className="container mx-auto px-4 py-8 ">
         <h1 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
           Your Cart
         </h1>
