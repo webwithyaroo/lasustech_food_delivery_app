@@ -29,8 +29,8 @@ export default function TrackOrderPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-20 min-h-screen">
-      <h1 className="text-4xl font-semibold mb-8 font-inter">
+    <div className="container mx-auto px-4 py-8  min-h-screen">
+      <h1 className="text-4xl text-center font-semibold mb-8 font-inter">
         Track Your Order
       </h1>
 

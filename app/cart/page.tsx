@@ -1,18 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-carts";
 import { useToast } from "@/hooks/use-toast";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
+import confetti from "canvas-confetti";
 
 export default function CartPage() {
   const router = useRouter();
   const { items, updateQuantity, removeItem, clearCart } = useCart();
   const { toast } = useToast();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -61,6 +63,36 @@ export default function CartPage() {
       router.push("/track-order");
     }, 2000);
   };
+
+  useEffect(() => {
+    if (showSuccess) {
+      const end = Date.now() + 2 * 1000;
+
+      const colors = ["#bb0000", "#ffffff"];
+
+      (function frame() {
+        confetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.6 },
+          colors,
+        });
+
+        confetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.6 },
+          colors,
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  }, [showSuccess]);
 
   if (items.length === 0) {
     return (
@@ -194,7 +226,7 @@ export default function CartPage() {
                 </div>
               </div>
               <Button
-                className="w-full bg-primaryd dark:bg-white  hover:bg-primary/90"
+                className="w-full bg-primary dark:bg-white  hover:bg-primary/90"
                 onClick={handleCheckout}
                 disabled={isCheckingOut}>
                 {isCheckingOut ? "Processing..." : "Checkout"}

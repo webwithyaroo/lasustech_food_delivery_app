@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import { navbarLinks } from "@/components/constants";
 import { Button } from "../ui/button";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ShoppingCart } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/hooks/use-carts";
+import { Badge } from "../ui/badge";
+import Link from "next/link";
 
 const NavigationBar = () => {
   const pathname = usePathname();
@@ -77,6 +80,11 @@ const NavigationBar = () => {
 
           {/* Desktop Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
+            {/* Shopping Cart */}
+            <Link href="/cart" className="relative">
+              <ShoppingCart className="w-6 h-6 text-gray-600 dark:text-white hover:text-accent transition-colors duration-300" />
+              <CartBadge />
+            </Link>
             {/* Dark Mode Toggle */}
             <button
               aria-label="Toggle Dark Mode"

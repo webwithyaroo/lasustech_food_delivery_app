@@ -1,12 +1,10 @@
 export const navbarLinks = [
   { label: "Home", href: "/" },
   { label: "Restaurants", href: "/restaurants" },
-  // { label: "Categories", href: "/categories" },
   { label: "Menu", href: "/menu" },
-  // { label: "Offers", href: "/offers" },
+  { label: "Blog", href: "/blog" },
   { label: "Track Order", href: "/track-order" },
   { label: "Cart", href: "/cart" },
-  // { label: "Contact", href: "/contact" },
 ];
 export const footerLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },

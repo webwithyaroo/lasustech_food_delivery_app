@@ -150,7 +150,7 @@ export default function MenuPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-background overflow-x-hidden">
-      <div className="container mx-auto px-4 py-8 mt-20">
+      <div className="container mx-auto px-4 py-8 ">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 md:mb-0">
             Our Menu
