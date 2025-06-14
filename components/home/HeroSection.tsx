@@ -31,7 +31,7 @@ const HeroSection = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-semibold font-inter leading-tight">
+        <h1 className="mt-6 text-3xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-semibold font-inter leading-tight">
           Satisfy Every Craving
           <br />
           🍔Wherever You Are,
