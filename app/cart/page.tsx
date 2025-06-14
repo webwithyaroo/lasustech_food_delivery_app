@@ -244,12 +244,21 @@ export default function CartPage() {
                     </span>
                   </div>
                 </div>
-              </div>              <Button
+              </div>{" "}
+              <Button
                 onClick={handleCheckout}
                 disabled={isCheckingOut}
-                className="w-full bg-primary dark:bg-white hover:bg-primary/90 dark:hover:bg-white/90 relative overflow-hidden"
-                disabled={isCheckingOut}>
-                {isCheckingOut ? "Processing..." : "Checkout"}
+                className="w-full bg-primary dark:bg-white hover:bg-primary/90 dark:hover:bg-white/90 relative overflow-hidden">
+                {isCheckingOut ? (
+                  <>
+                    <span className="opacity-0">Checkout</span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-5 h-5 border-t-2 border-r-2 border-white dark:border-black rounded-full animate-spin"></div>
+                    </div>
+                  </>
+                ) : (
+                  "Checkout"
+                )}
               </Button>
               {total < 50 && (
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">

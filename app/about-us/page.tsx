@@ -173,7 +173,9 @@ export default function AboutUsPage() {
             className="bg-white text-accent hover:bg-gray-100">
             Partner with Us
           </Button>
-          <Button variant="outline" className="text-white border-white">
+          <Button
+            variant="outline"
+            className="text-white bg-transparent border-white">
             Learn More
           </Button>
         </div>
