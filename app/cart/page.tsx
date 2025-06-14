@@ -4,10 +4,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-carts";
 import { useToast } from "@/hooks/use-toast";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useRouter } from "next/navigation";
 
 export default function CartPage() {
+  const router = useRouter();
   const { items, updateQuantity, removeItem, clearCart } = useCart();
   const { toast } = useToast();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -26,11 +28,7 @@ export default function CartPage() {
 
     const newQuantity = item.quantity + change;
     if (newQuantity <= 0) {
-      removeItem(itemId);
-      toast({
-        title: "Item removed",
-        description: `${item.name} has been removed from your cart.`,
-      });
+      handleRemoveItem(itemId);
     } else {
       updateQuantity(itemId, newQuantity);
       toast({
@@ -53,6 +51,7 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     setIsCheckingOut(true);
+    // Simulate checkout process
     setTimeout(() => {
       clearCart();
       toast({
@@ -60,6 +59,7 @@ export default function CartPage() {
         description: "Thank you for your order. It will be delivered soon.",
       });
       setIsCheckingOut(false);
+      router.push("/track-order");
     }, 2000);
   };
 
@@ -67,12 +67,13 @@ export default function CartPage() {
     return (
       <div className="container mx-auto px-4 py-8 mt-20 min-h-screen">
         <div className="text-center">
+          <ShoppingBag className="w-16 h-16 mx-auto mb-4 text-gray-400" />
           <h1 className="text-2xl font-bold mb-4">Your Cart is Empty</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-8">
             Add some delicious items to your cart and come back!
           </p>
           <Button
-            onClick={() => (window.location.href = "/menu")}
+            onClick={() => router.push("/menu")}
             className="bg-primary text-white hover:bg-primary/90">
             Browse Menu
           </Button>

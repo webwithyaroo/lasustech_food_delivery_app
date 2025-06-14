@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Star, ShoppingCart, Plus, Minus } from "lucide-react";
 import { useCart } from "@/hooks/use-carts";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const menuItems = [
   {
@@ -91,6 +92,7 @@ const menuItems = [
 ];
 
 export default function MenuPage() {
+  const router = useRouter();
   const { items, addItem, updateQuantity } = useCart();
   const { toast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -98,6 +100,7 @@ export default function MenuPage() {
   const categories = Array.from(
     new Set(menuItems.map((item) => item.category))
   );
+
   const filteredItems = selectedCategory
     ? menuItems.filter((item) => item.category === selectedCategory)
     : menuItems;
@@ -113,6 +116,10 @@ export default function MenuPage() {
 
     if (newQuantity <= 0) {
       updateQuantity(item.id, 0);
+      toast({
+        title: "Item removed",
+        description: `${item.name} has been removed from your cart.`,
+      });
       return;
     }
 
@@ -124,14 +131,21 @@ export default function MenuPage() {
         image: item.image,
         quantity: 1,
       });
+      toast({
+        title: "Item added",
+        description: `${item.name} has been added to your cart.`,
+      });
     } else {
       updateQuantity(item.id, newQuantity);
+      toast({
+        title: change > 0 ? "Quantity increased" : "Quantity decreased",
+        description: `${item.name} quantity updated to ${newQuantity}.`,
+      });
     }
+  };
 
-    toast({
-      title: change > 0 ? "Item added" : "Item removed",
-      description: `${item.name} quantity updated in cart.`,
-    });
+  const handleViewCart = () => {
+    router.push("/cart");
   };
 
   return (
@@ -141,25 +155,33 @@ export default function MenuPage() {
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 md:mb-0">
             Our Menu
           </h1>
-          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
-            <Button
-              variant={selectedCategory === null ? "default" : "outline"}
-              onClick={() => setSelectedCategory(null)}>
-              All
-            </Button>
-            {categories.map((category) => (
+          <div className="flex items-center gap-4">
+            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
               <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className={
-                  selectedCategory === category
-                    ? "bg-accent text-white"
-                    : "bg-transparent outline-none focus-within:outline-none"
-                }
-                onClick={() => setSelectedCategory(category)}>
-                {category}
+                variant={selectedCategory === null ? "default" : "outline"}
+                onClick={() => setSelectedCategory(null)}>
+                All
               </Button>
-            ))}
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={
+                    selectedCategory === category ? "default" : "outline"
+                  }
+                  onClick={() => setSelectedCategory(category)}>
+                  {category}
+                </Button>
+              ))}
+            </div>
+            {items.length > 0 && (
+              <Button
+                onClick={handleViewCart}
+                className="bg-primary text-white hover:bg-primary/90">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                View Cart ({items.reduce((acc, item) => acc + item.quantity, 0)}
+                )
+              </Button>
+            )}
           </div>
         </div>
 
@@ -198,7 +220,7 @@ export default function MenuPage() {
                 <div className="flex items-center justify-between">
                   <Badge
                     variant="outline"
-                    className="text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600">
+                    className="text-gray-700 dark:text-gray-300">
                     {item.category}
                   </Badge>
                   <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -206,31 +228,32 @@ export default function MenuPage() {
                   </span>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
+                  {getItemQuantity(item.id) > 0 ? (
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleQuantityChange(item, -1)}>
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <span className="w-8 text-center">
+                        {getItemQuantity(item.id)}
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleQuantityChange(item, 1)}>
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
                     <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => handleQuantityChange(item, -1)}
-                      disabled={getItemQuantity(item.id) === 0}>
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <span className="w-8 text-center text-gray-800 dark:text-white">
-                      {getItemQuantity(item.id)}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="icon"
+                      className="w-full bg-primary text-white hover:bg-primary/90"
                       onClick={() => handleQuantityChange(item, 1)}>
-                      <Plus className="h-4 w-4" />
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
                     </Button>
-                  </div>
-                  <Button
-                    variant="default"
-                    className="bg-primary text-white hover:bg-primary/90"
-                    onClick={() => handleQuantityChange(item, 1)}>
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Add
-                  </Button>
+                  )}
                 </div>
               </div>
             </div>
