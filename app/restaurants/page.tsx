@@ -79,7 +79,7 @@ export default function RestaurantsPage() {
   }, [searchTerm, selectedCuisine, sortBy]);
 
   return (
-    <div className="min-h-screen mt-14">
+    <div className="min-h-screen ">
       {/* Hero Section */}
       <section className="relative py-20">
         <Image

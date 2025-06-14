@@ -76,14 +76,14 @@ export default function BlogPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-10">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-start mb-12">
           <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
             Ordery Blog
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl">
             Discover the latest news, insights, and stories from the world of
             food delivery.
           </p>

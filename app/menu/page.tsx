@@ -176,7 +176,7 @@ export default function MenuPage() {
             {items.length > 0 && (
               <Button
                 onClick={handleViewCart}
-                className="bg-primary text-white hover:bg-primary/90">
+                className="bg-accent text-white hover:bg-accent/90">
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 View Cart ({items.reduce((acc, item) => acc + item.quantity, 0)}
                 )
@@ -248,7 +248,7 @@ export default function MenuPage() {
                     </div>
                   ) : (
                     <Button
-                      className="w-full bg-primary text-white hover:bg-primary/90"
+                      className="w-full bg-primary dark:bg-white  hover:bg-primary/90"
                       onClick={() => handleQuantityChange(item, 1)}>
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart

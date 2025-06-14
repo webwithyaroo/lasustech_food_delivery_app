@@ -5,12 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Star, Clock, MapPin, Heart, Share2, Phone, Info } from "lucide-react";
+import {
+  Star,
+  Clock,
+  MapPin,
+  Heart,
+  Share2,
+  Phone,
+  Info,
+  Plus,
+  Minus,
+  ShoppingCart,
+} from "lucide-react";
 import Image from "next/image";
 import { useCart } from "@/hooks/use-carts";
 import { useToast } from "@/hooks/use-toast";
 import { restaurants } from "@/components/constants";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const menuItems = [
   {
@@ -80,8 +91,9 @@ const menuItems = [
 ];
 
 export default function RestaurantPage() {
-  const { addItem } = useCart();
+  const { addItem, items, updateQuantity } = useCart();
   const { toast } = useToast();
+  const router = useRouter();
   const params = useParams();
   const [activeTab, setActiveTab] = useState("menu");
   const [isFavorite, setIsFavorite] = useState(false);
@@ -113,21 +125,62 @@ export default function RestaurantPage() {
     });
   };
 
+  const getItemQuantity = (itemId: string) => {
+    const cartItem = items.find((item) => item.id === itemId);
+    return cartItem ? cartItem.quantity : 0;
+  };
+
+  const handleQuantityChange = (item: any, change: number) => {
+    const currentQuantity = getItemQuantity(item.id);
+    const newQuantity = currentQuantity + change;
+
+    if (newQuantity <= 0) {
+      updateQuantity(item.id, 0);
+      toast({
+        title: "Item removed",
+        description: `${item.name} has been removed from your cart.`,
+      });
+      return;
+    }
+
+    if (currentQuantity === 0) {
+      addItem({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+      });
+      toast({
+        title: "Added to cart",
+        description: `${item.name} has been added to your cart.`,
+      });
+    } else {
+      updateQuantity(item.id, newQuantity);
+      toast({
+        title: change > 0 ? "Quantity increased" : "Quantity decreased",
+        description: `${item.name} quantity updated to ${newQuantity}.`,
+      });
+    }
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8 mt-20">
-      {/* Restaurant Header */}
-      <div className="relative h-[300px] rounded-xl overflow-hidden mb-6">
+    <div className="container mx-auto px-4 py-8 ">
+      {/* Restaurant Header */}{" "}
+      <div className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-xl overflow-hidden mb-6">
         <img
           src={restaurant.image}
           alt={restaurant.name}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
-          <div className="absolute bottom-0 left-0 p-6 text-white">
-            <h1 className="text-4xl font-bold mb-2">{restaurant.name}</h1>
-            <div className="flex items-center gap-4 mb-2">
+          <div className="absolute bottom-0 left-0 p-4 md:p-6 text-white">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+              {restaurant.name}
+            </h1>
+            <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-2 text-sm md:text-base">
               <span className="flex items-center gap-1">
-                <Star className="w-5 h-5 fill-yellow-400 stroke-yellow-400" />
+                <Star className="w-4 h-4 md:w-5 md:h-5 fill-yellow-400 stroke-yellow-400" />
                 {restaurant.rating}
               </span>
               <span>({restaurant.reviewCount} reviews)</span>
@@ -149,72 +202,109 @@ export default function RestaurantPage() {
             </div>
           </div>
         </div>
-      </div>
-
+      </div>{" "}
       {/* Action Buttons */}
-      <div className="flex gap-4 mb-8">
-        <Button
-          variant="outline"
-          className="flex items-center gap-2"
-          onClick={() => setIsFavorite(!isFavorite)}>
-          <Heart
-            className={`w-5 h-5 ${
-              isFavorite ? "fill-red-500 stroke-red-500" : ""
-            }`}
-          />
-          {isFavorite ? "Saved" : "Save"}
-        </Button>
-        <Button variant="outline" className="flex items-center gap-2">
-          <Share2 className="w-5 h-5" />
-          Share
-        </Button>
+      <div className="flex flex-wrap items-center gap-4 mb-8 justify-between">
+        <div className="flex gap-4">
+          <Button
+            variant="outline"
+            className="flex items-center gap-2"
+            onClick={() => setIsFavorite(!isFavorite)}>
+            <Heart
+              className={`w-5 h-5 ${
+                isFavorite ? "fill-red-500 stroke-red-500" : ""
+              }`}
+            />
+            {isFavorite ? "Saved" : "Save"}
+          </Button>
+          <Button variant="outline" className="flex items-center gap-2">
+            <Share2 className="w-5 h-5" />
+            Share
+          </Button>
+        </div>
+        {items.length > 0 && (
+          <Button
+            onClick={() => router.push("/cart")}
+            className="bg-accent text-white hover:bg-accent/90">
+            <ShoppingCart className="w-4 h-4 mr-2" />
+            View Cart ({items.reduce((acc, item) => acc + item.quantity, 0)})
+          </Button>
+        )}
       </div>
-
       {/* Restaurant Info Tabs */}
       <Tabs defaultValue="menu" className="mb-8">
         <TabsList>
           <TabsTrigger value="menu">Menu</TabsTrigger>
           <TabsTrigger value="info">Information</TabsTrigger>
           <TabsTrigger value="reviews">Reviews</TabsTrigger>
-        </TabsList>
-
+        </TabsList>{" "}
         <TabsContent value="menu" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {menuItems.map((item) => (
               <div
                 key={item.id}
-                className="relative overflow-hidden rounded-2xl shadow-lg group transition-transform duration-500 hover:scale-105">
-                <div className="h-80">
+                className="bg-white dark:bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="relative h-48 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   />
+                  <div className="absolute top-2 right-2">
+                    <Badge className="bg-white/90 dark:bg-black/80 text-black dark:text-white">
+                      ${item.price}
+                    </Badge>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                  <h3 className="text-2xl font-semibold text-white">
-                    {item.name}
-                  </h3>
-                  <p className="text-base text-secondary dark:text-white mb-3">
+                <div className="p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {item.name}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                     {item.description}
                   </p>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xl font-bold text-white">
-                      ${item.price}
-                    </span>
+                  <div className="flex items-center justify-between mb-4">
+                    <Badge
+                      variant="outline"
+                      className="text-gray-700 dark:text-gray-300">
+                      {item.category}
+                    </Badge>
                   </div>
-                  <Button
-                    onClick={() => handleAddToCart(item)}
-                    size="lg"
-                    className="w-full bg-white text-black hover:bg-primary hover:text-white transition-colors duration-300">
-                    Add to Cart
-                  </Button>
+                  {getItemQuantity(item.id) > 0 ? (
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleQuantityChange(item, -1)}
+                        className="h-8 w-8">
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <span className="w-8 text-center font-medium">
+                        {getItemQuantity(item.id)}
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleQuantityChange(item, 1)}
+                        className="h-8 w-8">
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={() => handleQuantityChange(item, 1)}
+                      className="w-full bg-primary dark:bg-white hover:bg-accent dark:text-primary text-white hover:bg-primary/90">
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </Button>
+                  )}
                 </div>
               </div>
             ))}
           </div>
         </TabsContent>
-
         <TabsContent value="info" className="mt-6">
           <div className="space-y-6">
             <div>
@@ -242,7 +332,6 @@ export default function RestaurantPage() {
             </div>
           </div>
         </TabsContent>
-
         <TabsContent value="reviews" className="mt-6">
           <div className="text-center py-8">
             <h3 className="text-xl font-semibold mb-2">Reviews Coming Soon</h3>

@@ -5,11 +5,23 @@ import FooterSection from "../components/home/FooterSection";
 import NavigationBar from "@/components/home/Header";
 import { Car } from "lucide-react";
 import { CartProvider } from "@/components/cart-provider";
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
 const montserrat = Montserrat({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-montserrat",
 });
+
+export const metadata = {
+  title: "Ordery - Food Delivery App",
+  description: "Your favorite food, delivered fast and fresh",
+};
 
 export default function RootLayout({
   children,
@@ -18,17 +30,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <head>
-        <title>Ordery</title>
-        <meta name="description" content="Ordery - Your Food Ordering App" />
-        <link rel="icon" href="/favicon.ico" />
-      </head> */}
-
       <body
-        className={`${inter.variable} ${montserrat.variable} font-sans antialiased`}>
+        className={`${inter.variable} ${montserrat.variable} font-sans antialiased bg-background text-foreground`}>
         <CartProvider>
           <NavigationBar />
-          <main>{children}</main>
+          <main className="pt-20">{children}</main>
           <FooterSection />
         </CartProvider>
       </body>
