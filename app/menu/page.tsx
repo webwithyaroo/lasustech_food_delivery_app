@@ -197,7 +197,7 @@ export default function MenuPage() {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
                 <div className="absolute top-2 right-2">
-                  <Badge className="bg-white/90 dark:bg-black/80 text-black dark:text-white">
+                  <Badge className="bg-green-400/90  text-white">
                     ${item.price}
                   </Badge>
                 </div>
