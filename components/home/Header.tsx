@@ -206,7 +206,7 @@ const NavigationBar = () => {
               className="text-base text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors">
               Sign In
             </a>
-            <Button className="dark:bg-primary dark:text-white text-black w-full">
+            <Button className="bg-white dark:bg-white dark:text-white text-black w-full">
               Start Ordering Now
             </Button>
           </div>
