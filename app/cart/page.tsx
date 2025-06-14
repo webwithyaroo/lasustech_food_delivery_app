@@ -84,7 +84,7 @@ export default function CartPage() {
   if (showSuccess) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 ">
           <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
             <div className="p-8 text-center">
               <div className="mb-6 flex justify-center">
