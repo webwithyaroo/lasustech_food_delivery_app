@@ -89,7 +89,7 @@ export default function RestaurantsPage() {
           objectFit="cover"
           className="absolute inset-0"
         />
-        <div className="relative container mx-auto px-4">
+        <div className="relative container mx-auto px-4 pb-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl  text-white md:text-6xl font-bold mb-6">
               Discover Amazing Restaurants
